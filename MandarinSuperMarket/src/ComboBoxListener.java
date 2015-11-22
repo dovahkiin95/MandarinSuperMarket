@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
@@ -41,6 +42,7 @@ public class ComboBoxListener implements ActionListener {
 			        //button.setText(product);
 			        
 			        buttons[i] = new JButton("" + product); //create button & add to array
+			        buttons[i].setPreferredSize(new Dimension(190,30));
 			    //    buttons[i].addActionListener(this); //add an action listener to the current button     
 			        // other attributes you will set
 

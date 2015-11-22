@@ -4,6 +4,9 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.LineBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 
 public class CustomerWindow {
@@ -25,19 +28,19 @@ public class CustomerWindow {
 	public CustomerWindow() {
 		
 		initialize();
-		System.out.println("entered cw");
+		
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Customer Purcahase");
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 628, 343);
+		frame.setBounds(100, 100, 659, 368);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		Mainpanel = new JPanel();
+		Mainpanel = new JPanel(new BorderLayout());
 		Mainpanel.setBackground(Color.blue);
 		
 		
@@ -47,20 +50,27 @@ public class CustomerWindow {
 		
 		
 		JLabel lblSelectCategory = new JLabel("Select Category");
+		
+		JLabel label = new JLabel("New label");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(29)
-							.addComponent(lblSelectCategory))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(29)
+									.addComponent(lblSelectCategory))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(37)
+									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)))
+							.addGap(27)
+							.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(37)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)))
-					.addGap(27)
-					.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(106, Short.MAX_VALUE))
+							.addGap(243)
+							.addComponent(label)))
+					.addContainerGap(274, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -73,17 +83,21 @@ public class CustomerWindow {
 							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(33, Short.MAX_VALUE))
+							.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
+					.addComponent(label)
+					.addContainerGap(35, Short.MAX_VALUE))
 		);
 		// scroll button starts
 		buttonPanel = new JPanel();
 	    buttonPanel.setLayout(new GridBagLayout());
-	    buttonPanel.setSize(new Dimension(400, 300)); // whatever
+	    buttonPanel.setSize(new Dimension(500, 300)); // whatever
 
 	    // the scrollpane
 	    pane = new JScrollPane();
-	    pane.setSize(new Dimension(400, 300)); // whatever
+	    pane.setViewportBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+	    pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	    pane.setSize(new Dimension(500, 500)); // whatever
 
 	    // GridBagConstraint for button
 	    constraint = new GridBagConstraints();

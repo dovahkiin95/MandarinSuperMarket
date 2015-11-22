@@ -1,8 +1,7 @@
-import java.sql.PreparedStatement;
 import java.sql.*;
 import java.awt.*;
+
 import javax.swing.*;
-import javax.swing.JComboBox;
 
 
 public class Allproducts {
@@ -41,7 +40,7 @@ public class Allproducts {
 			       ComboBoxListener.buttons[i] = new JButton("" + product); //create button & add to array
 			    //    buttons[i].addActionListener(this); //add an action listener to the current button     
 			        // other attributes you will set
-
+			       ComboBoxListener.buttons[i].setPreferredSize(new Dimension(190,30));
 			       CustomerWindow.buttonPanel.add(ComboBoxListener.buttons[i], CustomerWindow.constraint);
 			           
 	                System.out.println("making button "+product);

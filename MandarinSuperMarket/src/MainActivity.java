@@ -39,7 +39,7 @@ public class MainActivity {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Mandarin Super Market");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -55,6 +55,8 @@ public class MainActivity {
 		AdministratorLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//new CustomerWindow;
+				System.out.println("Admin");
+				new AdminLogin();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
@@ -84,25 +86,5 @@ public class MainActivity {
 		
 	}
 	
-/*	public class ButtonClickListener extends MainActivity implements ActionListener {
-		String action;
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			action=e.getActionCommand();
-			if(action == "Customer") {
-				new CustomerWindow();
-				
-			}
-			else
-				System.out.println("admin");
-				
-
-
-			//frame.repaint();
-		}
-
-	}
- */
 }
