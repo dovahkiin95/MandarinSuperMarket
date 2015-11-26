@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 
 public class ComboBoxListener implements ActionListener {
 	 public static JButton[] buttons  = new JButton[18];
+	 ProductInterface pi=new  ProductInterface();
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		CustomerWindow.buttonPanel.removeAll();
@@ -43,6 +44,16 @@ public class ComboBoxListener implements ActionListener {
 			        
 			        buttons[i] = new JButton("" + product); //create button & add to array
 			        buttons[i].setPreferredSize(new Dimension(190,30));
+                    buttons[i].addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent event) {
+							// TODO Auto-generated method stub
+							System.out.println("Getting table for "+((JButton) event.getSource()).getText());
+						new ProductPriceTable1(((JButton) event.getSource()).getText(),pi);	
+						
+						}
+					});
 			    //    buttons[i].addActionListener(this); //add an action listener to the current button     
 			        // other attributes you will set
 
