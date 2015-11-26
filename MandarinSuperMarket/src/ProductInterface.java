@@ -7,6 +7,7 @@ import java.util.List;
 
 public class ProductInterface {
 	Products tempProducts;
+	public static double total=0;
 	
 	
 	
@@ -43,6 +44,7 @@ private Products convertRowToProduct(ResultSet r) throws SQLException {
 		
 		String item = r.getString(1);
 		Double price = r.getDouble(2);
+		total+=price;
 		System.out.println("Item="+item+" Price="+price);
 		
 		Products tempComplaint = new Products(item,price);

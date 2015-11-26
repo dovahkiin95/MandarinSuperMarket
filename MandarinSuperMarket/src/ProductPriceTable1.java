@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.TextField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class ProductPriceTable1 extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 
 
-	private JTable table = new JTable();
+	private static JTable table = new JTable();
 	protected static  List<Products> ProductList= new ArrayList<Products>();
 	private String search;
 	private ProductInterface pi;
@@ -38,6 +39,8 @@ public class ProductPriceTable1 extends JDialog {
 	}
 	
 public ProductPriceTable1(String x,ProductInterface pro) {
+	
+	    JDialog d=new JDialog();
 	
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
@@ -92,6 +95,9 @@ public ProductPriceTable1(String x,ProductInterface pro) {
 		}
 		}
 		this.setVisible(true);
+		CustomerWindow.textField.setText(Double.toString(ProductInterface.total));
+		CustomerWindow.frame.revalidate();
+		//(ProductInterface.total);
 		
 	}
 
@@ -102,5 +108,3 @@ public ProductPriceTable1(String x,ProductInterface pro) {
 		
 		}
 	}
-
-

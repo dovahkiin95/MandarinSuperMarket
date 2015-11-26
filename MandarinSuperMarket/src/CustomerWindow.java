@@ -11,11 +11,12 @@ import javax.swing.border.BevelBorder;
 
 public class CustomerWindow {
 
-	private JFrame frame;
+	public static JFrame frame;
 	public static JPanel buttonPanel;
 	public static GridBagConstraints constraint;
 	public static  JScrollPane pane;
 	public static JPanel Mainpanel;
+	public static JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -52,6 +53,12 @@ public class CustomerWindow {
 		JLabel lblSelectCategory = new JLabel("Select Category");
 		
 		JLabel label = new JLabel("New label");
+		
+		JLabel lblTotal = new JLabel("Total");
+		
+		textField = new JTextField();
+		textField.setText("0");
+		textField.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -66,27 +73,41 @@ public class CustomerWindow {
 									.addGap(37)
 									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)))
 							.addGap(27)
-							.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE))
+							.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(96)
+									.addComponent(lblTotal, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(72)
+									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(243)
 							.addComponent(label)))
-					.addContainerGap(274, Short.MAX_VALUE))
+					.addContainerGap(88, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(78)
-							.addComponent(lblSelectCategory)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(78)
+									.addComponent(lblSelectCategory)
+									.addGap(18)
+									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addContainerGap()
+									.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)))
 							.addGap(18)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(label))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)))
-					.addGap(18)
-					.addComponent(label)
-					.addContainerGap(35, Short.MAX_VALUE))
+							.addGap(62)
+							.addComponent(lblTotal, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+							.addGap(26)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(63, Short.MAX_VALUE))
 		);
 		// scroll button starts
 		buttonPanel = new JPanel();
