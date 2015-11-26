@@ -17,6 +17,7 @@ public class AdminLogin {
 	private JFrame frame;
 	private JPasswordField pwdPassword;
 	private JLabel lblInvalidPassword;
+	ProductInterface pro=new ProductInterface();
 
 	/**
 	 * Launch the application.
@@ -51,6 +52,24 @@ public class AdminLogin {
 		
 		
 		lblInvalidPassword = new JLabel("INVALID PASSWORD");
+		lblInvalidPassword.setForeground(Color.RED);
+		lblInvalidPassword.setVisible(false);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String strPassword = new String(pwdPassword.getPassword());
+				System.out.println("password="+strPassword);
+				if(strPassword=="")
+					new ManageProducts(pro);
+				else
+					lblInvalidPassword.setVisible(true);
+				lblInvalidPassword.setVisible(true);
+				}
+		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -60,11 +79,13 @@ public class AdminLogin {
 							.addContainerGap()
 							.addComponent(label)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(pwdPassword, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(pwdPassword, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+							.addGap(33)
+							.addComponent(btnLogin))
+						    .addGroup(groupLayout.createSequentialGroup()
 							.addGap(134)
 							.addComponent(lblInvalidPassword)))
-					.addContainerGap(178, Short.MAX_VALUE))
+					.addContainerGap(53, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -72,8 +93,9 @@ public class AdminLogin {
 					.addGap(111)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label)
-						.addComponent(pwdPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+						.addComponent(pwdPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnLogin))
+					.addPreferredGap(ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
 					.addComponent(lblInvalidPassword)
 					.addGap(59))
 		);

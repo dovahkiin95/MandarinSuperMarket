@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 public class ProductPriceTable1 extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	public static JDialog d;
 
 
 	private static JTable table = new JTable();
@@ -40,24 +41,24 @@ public class ProductPriceTable1 extends JDialog {
 	
 public ProductPriceTable1(String x,ProductInterface pro) {
 	
-	    JDialog d=new JDialog();
+	    d=new JDialog();
 	
-		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 	
 		this.search=x;
 		this.pi=pro;
 		
 		System.out.println("Inside ppt constuctr 1");
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
+		d.setBounds(100, 100, 450, 300);
+		d.getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		d.getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			d.getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				try {
 				
@@ -94,7 +95,7 @@ public ProductPriceTable1(String x,ProductInterface pro) {
 		scrollPane.setViewportView(table);
 		}
 		}
-		this.setVisible(true);
+		d.setVisible(true);
 		CustomerWindow.textField.setText(Double.toString(ProductInterface.total));
 		CustomerWindow.frame.revalidate();
 		//(ProductInterface.total);

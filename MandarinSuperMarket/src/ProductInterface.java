@@ -39,6 +39,33 @@ public class ProductInterface {
 		}
 	}
 	
+	public List<Products> getAllProducts() throws Exception {
+		List<Products> list = new ArrayList<>();
+
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		DBconnect ob=new DBconnect();
+
+		try {
+			
+			
+			myStmt = ob.con.prepareStatement("select * from Products");
+		
+			
+			myRs = myStmt.executeQuery();
+			
+			while (myRs.next()) {
+				
+				Products tempProducts = convertRowToProduct(myRs);
+				list.add(tempProducts);
+			}
+			return list;
+		}
+		finally {
+			ob.con.close();
+		}
+	}
+	
 private Products convertRowToProduct(ResultSet r) throws SQLException {
 		
 		

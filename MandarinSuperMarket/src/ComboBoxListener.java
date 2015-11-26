@@ -10,7 +10,9 @@ import javax.swing.JComboBox;
 
 public class ComboBoxListener implements ActionListener {
 	 public static JButton[] buttons  = new JButton[18];
+	 public static int count=0;
 	 ProductInterface pi=new  ProductInterface();
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		CustomerWindow.buttonPanel.removeAll();
@@ -50,7 +52,9 @@ public class ComboBoxListener implements ActionListener {
 						public void actionPerformed(ActionEvent event) {
 							// TODO Auto-generated method stub
 							System.out.println("Getting table for "+((JButton) event.getSource()).getText());
+							if(count>0) ProductPriceTable1.d.setVisible(false);
 						new ProductPriceTable1(((JButton) event.getSource()).getText(),pi);	
+						count++;
 						
 						}
 					});

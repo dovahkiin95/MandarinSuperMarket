@@ -8,6 +8,8 @@ import java.util.List;
 public class Products {
 	private String item;
 	private Double price;
+	private int id;
+	private int dnum;
 	
 	
 	
@@ -17,6 +19,14 @@ public class Products {
 	}
 	public Products() {
 		
+	}
+	
+	public int getID() {
+		return this.id;
+	}
+	
+	public int getdnum() {
+		return this.dnum;
 	}
 	
 	public String getItem() {
