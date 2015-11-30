@@ -63,11 +63,13 @@ public class AdminLogin {
 				// TODO Auto-generated method stub
 				String strPassword = new String(pwdPassword.getPassword());
 				System.out.println("password="+strPassword);
-				if(strPassword=="")
+				if(strPassword.equals("admin")){
 					new ManageProducts(pro);
+					frame.setVisible(false);
+					frame.dispose();}
 				else
 					lblInvalidPassword.setVisible(true);
-				lblInvalidPassword.setVisible(true);
+				//lblInvalidPassword.setVisible(true);
 				}
 		});
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());

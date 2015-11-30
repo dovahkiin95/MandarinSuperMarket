@@ -47,7 +47,7 @@ public class ProductInterface {
 		DBconnect ob=new DBconnect();
 
 		try {
-			
+			System.out.println("inside getAllProducts");
 			
 			myStmt = ob.con.prepareStatement("select * from Products");
 		
@@ -56,9 +56,9 @@ public class ProductInterface {
 			
 			while (myRs.next()) {
 				
-				Products tempProducts = convertRowToProduct(myRs);
+				Products tempProducts = convertRowToProduct1(myRs);
 				list.add(tempProducts);
-			}
+			}System.out.println("Returning");
 			return list;
 		}
 		finally {
@@ -69,8 +69,9 @@ public class ProductInterface {
 private Products convertRowToProduct(ResultSet r) throws SQLException {
 		
 		
-		String item = r.getString(1);
-		Double price = r.getDouble(2);
+		String item = r.getString("Item");
+		Double price = r.getDouble("Price");
+
 		total+=price;
 		System.out.println("Item="+item+" Price="+price);
 		
@@ -132,5 +133,19 @@ public Products getProductObjects(String search) throws Exception {
 	return tempProducts;
 
 
+}
+private Products convertRowToProduct1(ResultSet r) throws SQLException {
+	
+	
+	String item = r.getString("Item");
+	Double price = r.getDouble("Price");
+	int dno=r.getInt("D_num");
+	String id=r.getString("Product_Id");
+	
+
+	System.out.println("Item="+item+" Price="+price+" id="+id+"dno="+dno);
+	Products tempComplaint = new Products(item,price,id,dno);
+	
+	return tempComplaint;
 }
 }

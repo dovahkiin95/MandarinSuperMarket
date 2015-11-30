@@ -46,6 +46,10 @@ class AllTableModel extends AbstractTableModel {
 			return tempProducts.getItem();
 		case Price_COL:
 			return tempProducts.getPrice();
+		case Id_COL:
+			return tempProducts.getID();
+		case Dnum_COL:
+			return tempProducts.getdnum();
 		
 		default:
 			return tempProducts.getPrice();
