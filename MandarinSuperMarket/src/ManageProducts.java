@@ -53,7 +53,7 @@ public class ManageProducts extends JDialog {
 		 d=new JDialog();	d.setVisible(true);
 		 d.setTitle("Manage Products");
 		d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		d.setBounds(100, 100, 450, 300);
+		d.setBounds(100, 100, 713, 316);
 		d.getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,16 +63,35 @@ public class ManageProducts extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			d.getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton btnReferesh = new JButton("Referesh");
-				btnReferesh.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-					d.setVisible(false);
-					d.dispose();
-					Manage();
-						
-					}
-				});
-				buttonPane.add(btnReferesh);
+				{
+					JButton button = new JButton("Update");
+					button.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							new UpdateProduct();
+						}
+					});
+					JButton btnReferesh = new JButton("Referesh");
+					btnReferesh.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+						d.setVisible(false);
+						d.dispose();
+						Manage();
+							
+						}
+					});
+					buttonPane.add(btnReferesh);
+					buttonPane.add(button);
+				}
+				{
+					JButton btnUpdateHistory = new JButton("Update History");
+					btnUpdateHistory.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							TriggerInterface pr=new TriggerInterface();
+							new TriggerDisplay(pr);
+						}
+					});
+					buttonPane.add(btnUpdateHistory);
+				}
 			}
 			{
 				JButton okButton = new JButton("New Product Entry");
