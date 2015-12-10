@@ -18,7 +18,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-
 public class InsertProduct extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
@@ -26,15 +25,15 @@ public class InsertProduct extends JDialog {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	DBconnect db=new DBconnect();
-	
+	DBconnect db = new DBconnect();
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
 			InsertProduct dialog = new InsertProduct();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -44,78 +43,132 @@ public class InsertProduct extends JDialog {
 	 * Create the dialog.
 	 */
 	public InsertProduct() {
-		JDialog d=new JDialog();
+		JDialog d = new JDialog();
 		d.setResizable(false);
 		d.setTitle("New Product Entry");
 		d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		
+
 		d.setBounds(100, 100, 450, 300);
 		d.getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		d.getContentPane().add(contentPanel, BorderLayout.NORTH);
-		
+
 		textField = new JTextField();
 		textField.setColumns(10);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		
+
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		
+
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		
+
 		JLabel id = new JLabel("Product ID");
 		id.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
-		
+
 		JLabel name = new JLabel("Product Name");
 		name.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
-		
+
 		JLabel price = new JLabel("Price");
 		price.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
-		
+
 		JLabel dnum = new JLabel("Department");
 		dnum.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
-		gl_contentPanel.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(31)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(id)
-						.addComponent(name)
-						.addComponent(price)
-						.addComponent(dnum))
-					.addGap(53)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(159, Short.MAX_VALUE))
-		);
-		gl_contentPanel.setVerticalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(36)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(id))
-					.addGap(30)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(name))
-					.addGap(30)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(price))
-					.addGap(28)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(dnum)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
+		gl_contentPanel
+				.setHorizontalGroup(gl_contentPanel
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(
+								gl_contentPanel
+										.createSequentialGroup()
+										.addGap(31)
+										.addGroup(
+												gl_contentPanel
+														.createParallelGroup(
+																Alignment.LEADING)
+														.addComponent(id)
+														.addComponent(name)
+														.addComponent(price)
+														.addComponent(dnum))
+										.addGap(53)
+										.addGroup(
+												gl_contentPanel
+														.createParallelGroup(
+																Alignment.LEADING)
+														.addComponent(
+																textField_3,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																textField_2,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																textField_1,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																textField,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE))
+										.addContainerGap(159, Short.MAX_VALUE)));
+		gl_contentPanel
+				.setVerticalGroup(gl_contentPanel
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(
+								gl_contentPanel
+										.createSequentialGroup()
+										.addGap(36)
+										.addGroup(
+												gl_contentPanel
+														.createParallelGroup(
+																Alignment.BASELINE)
+														.addComponent(
+																textField,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(id))
+										.addGap(30)
+										.addGroup(
+												gl_contentPanel
+														.createParallelGroup(
+																Alignment.BASELINE)
+														.addComponent(
+																textField_1,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(name))
+										.addGap(30)
+										.addGroup(
+												gl_contentPanel
+														.createParallelGroup(
+																Alignment.BASELINE)
+														.addComponent(
+																textField_2,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(price))
+										.addGap(28)
+										.addGroup(
+												gl_contentPanel
+														.createParallelGroup(
+																Alignment.BASELINE)
+														.addComponent(dnum)
+														.addComponent(
+																textField_3,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE))
+										.addContainerGap()));
 		contentPanel.setLayout(gl_contentPanel);
 		{
 			JPanel buttonPane = new JPanel();
@@ -125,35 +178,41 @@ public class InsertProduct extends JDialog {
 				JButton cancelButton = new JButton("Insert");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						String item,id,price,dnum;
-					
+						String item, id, price, dnum;
 
-						id=textField.getText();
-						item=textField_1.getText();
-						price=textField_2.getText();
-						dnum=textField_3.getText();
-						
+						id = textField.getText();
+						item = textField_1.getText();
+						price = textField_2.getText();
+						dnum = textField_3.getText();
+
 						try {
-							PreparedStatement ps=db.con.prepareStatement("insert into Products values (?,?,?,?)");
+							PreparedStatement ps = db.con
+									.prepareStatement("insert into Products values (?,?,?,?)");
 							ps.setString(1, id);
-							ps.setString(2,item);
-							ps.setInt(3,Integer.parseInt(dnum));
+							ps.setString(2, item);
+							ps.setInt(3, Integer.parseInt(dnum));
 							ps.setDouble(4, Double.parseDouble(price));
-						
-							System.out.println("id="+id+"item="+item+"price="+price+"dnum="+dnum);
-							int x=ps.executeUpdate();
-							JOptionPane.showMessageDialog(null, "Inserted Successfully !");
+
+							System.out.println("id=" + id + "item=" + item
+									+ "price=" + price + "dnum=" + dnum);
+							int x = ps.executeUpdate();
+							JOptionPane.showMessageDialog(null,
+									"Inserted Successfully !");
 							textField.setText(null);
 							textField_1.setText(null);
 							textField_2.setText(null);
 							textField_3.setText(null);
 							ManageProducts.d.revalidate();
 							ManageProducts.d.repaint();
-							
-						}catch (Exception exc) {
-							JOptionPane.showMessageDialog(InsertProduct.this, "Error: INVALID DEPARTMENT " , "Error", JOptionPane.ERROR_MESSAGE);
-							//JOptionPane.showMessageDialog(InsertProduct.this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE);
-						}	
+
+						} catch (Exception exc) {
+							JOptionPane.showMessageDialog(InsertProduct.this,
+									"Error: INVALID DEPARTMENT ", "Error",
+									JOptionPane.ERROR_MESSAGE);
+							// JOptionPane.showMessageDialog(InsertProduct.this,
+							// "Error: " + exc, "Error",
+							// JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				cancelButton.setActionCommand("Insert");

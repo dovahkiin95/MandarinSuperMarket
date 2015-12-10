@@ -15,25 +15,22 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 
-
 public class ManageProducts extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	public static JDialog d;
 
-
 	private static JTable table = new JTable();
-	//protected static List<Products> ProductList1=null;
+	// protected static List<Products> ProductList1=null;
 	private String search;
 	private ProductInterface pi;
-	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-	//		ManageProducts dialog = new ManageProducts();
+			// ManageProducts dialog = new ManageProducts();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,21 +41,22 @@ public class ManageProducts extends JDialog {
 	 * Create the dialog.
 	 */
 	public ManageProducts(ProductInterface pro) {
-		
-		
-	    this.pi=pro;
-	    System.out.println("leaving const 1");
-	    Manage();
-		}
+
+		this.pi = pro;
+
+		Manage();
+	}
+
 	public void Manage() {
-		 d=new JDialog();	d.setVisible(true);
-		 d.setTitle("Manage Products");
+		d = new JDialog();
+		d.setVisible(true);
+		d.setTitle("Manage Products");
 		d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		d.setBounds(100, 100, 713, 518);
 		d.getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-	d.getContentPane().add(contentPanel, BorderLayout.CENTER);
+		d.getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -73,13 +71,14 @@ public class ManageProducts extends JDialog {
 						}
 					});
 					JButton btnReferesh = new JButton("Referesh");
-					btnReferesh.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
+					btnReferesh
+							.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 					btnReferesh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
-						d.setVisible(false);
-						d.dispose();
-						Manage();
-							
+							d.setVisible(false);
+							d.dispose();
+							Manage();
+
 						}
 					});
 					buttonPane.add(btnReferesh);
@@ -87,10 +86,11 @@ public class ManageProducts extends JDialog {
 				}
 				{
 					JButton btnUpdateHistory = new JButton("Update History");
-					btnUpdateHistory.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
+					btnUpdateHistory.setFont(new Font("Ubuntu Medium",
+							Font.BOLD, 14));
 					btnUpdateHistory.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							TriggerInterface pr=new TriggerInterface();
+							TriggerInterface pr = new TriggerInterface();
 							new TriggerDisplay(pr);
 						}
 					});
@@ -103,11 +103,11 @@ public class ManageProducts extends JDialog {
 				okButton.setActionCommand("entry");
 				buttonPane.add(okButton);
 				okButton.addActionListener(new ActionListener() {
-					
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
-					new InsertProduct();	
+						new InsertProduct();
 					}
 				});
 				getRootPane().setDefaultButton(okButton);
@@ -117,7 +117,7 @@ public class ManageProducts extends JDialog {
 				cancelButton.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 				cancelButton.setActionCommand("remove");
 				cancelButton.addActionListener(new ActionListener() {
-					
+
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						// TODO Auto-generated method stub
@@ -126,40 +126,38 @@ public class ManageProducts extends JDialog {
 				});
 				buttonPane.add(cancelButton);
 			}
-			
-			{	
+
+			{
 				try {
-				
+
 					List<Products> ProductList1 = null;
-					System.out.println("trying to get all products");
-				ProductList1=pi.getAllProducts();
-				System.out.println("got all products");
-				// create the model and update the "table"  */
-				AllTableModel model = new AllTableModel(ProductList1);							
-				table.setModel(model);
-				System.out.println("CReated table model lol");
-				/*
-				for (Complaint temp : Complaints) {
-					System.out.println(temp);
-				}*/
-				
-			} catch (Exception exc) {
-				JOptionPane.showMessageDialog(ManageProducts.this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE); 
-			}	
-			
-		}
+
+					ProductList1 = pi.getAllProducts();
+
+					// create the model and update the "table" */
+					AllTableModel model = new AllTableModel(ProductList1);
+					table.setModel(model);
+
+					/*
+					 * for (Complaint temp : Complaints) {
+					 * System.out.println(temp); }
+					 */
+
+				} catch (Exception exc) {
+					JOptionPane
+							.showMessageDialog(ManageProducts.this, "Error: "
+									+ exc, "Error", JOptionPane.ERROR_MESSAGE);
+				}
+
+			}
 			{
 				JScrollPane scrollPane = new JScrollPane();
 				contentPanel.add(scrollPane, BorderLayout.CENTER);
-				
-				
+
 				scrollPane.setViewportView(table);
-				}
-				}
-				d.setVisible(true);
-			
-			
-	}
-	}
+			}
+		}
+		d.setVisible(true);
 
-
+	}
+}

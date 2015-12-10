@@ -2,7 +2,6 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-
 class TriggerTableModel extends AbstractTableModel {
 
 	private static final int Update_COL = 0;
@@ -11,9 +10,9 @@ class TriggerTableModel extends AbstractTableModel {
 	private static final int Id_COL = 3;
 	private static final int Old_COL = 4;
 	private static final int New_COL = 5;
-	
-	
-	private String[] columnNames = { "Update No.", "Changed On","Item","Id","Old Price","New Price" };
+
+	private String[] columnNames = { "Update No.", "Changed On", "Item", "Id",
+			"Old Price", "New Price" };
 	private List<TriggerClass> Products1;
 
 	public TriggerTableModel(List<TriggerClass> theProducts) {
@@ -32,11 +31,10 @@ class TriggerTableModel extends AbstractTableModel {
 
 	@Override
 	public String getColumnName(int col) {
-		
+
 		return columnNames[col];
-		
+
 	}
-	
 
 	@Override
 	public Object getValueAt(int row, int col) {
@@ -56,7 +54,7 @@ class TriggerTableModel extends AbstractTableModel {
 			return tempProducts.getOldPrice();
 		case New_COL:
 			return tempProducts.getNewPrice();
-		
+
 		default:
 			return tempProducts.getUpdate();
 		}
@@ -65,6 +63,6 @@ class TriggerTableModel extends AbstractTableModel {
 	@Override
 	public Class getColumnClass(int c) {
 		return getValueAt(0, c).getClass();
-		
+
 	}
 }

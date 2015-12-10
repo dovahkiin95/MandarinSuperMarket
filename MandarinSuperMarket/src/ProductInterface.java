@@ -4,148 +4,118 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ProductInterface {
 	Products tempProducts;
-	public static double total=0;
-	
-	
-	
+	public static double total = 0;
+
 	public List<Products> searchProducts(String search) throws Exception {
 		List<Products> list = new ArrayList<>();
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
-		DBconnect ob=new DBconnect();
+		DBconnect ob = new DBconnect();
 
 		try {
 			search += "%";
-			
-			myStmt = ob.con.prepareStatement("select * from Complaint where CompID like ?");
-			
+
+			myStmt = ob.con
+					.prepareStatement("select * from Complaint where CompID like ?");
+
 			myStmt.setString(1, search);
-			
+
 			myRs = myStmt.executeQuery();
-			
+
 			while (myRs.next()) {
-				
+
 				Products tempProducts = convertRowToProduct(myRs);
 				list.add(tempProducts);
 			}
 			return list;
-		}
-		finally {
+		} finally {
 			ob.con.close();
 		}
 	}
-	
+
 	public List<Products> getAllProducts() throws Exception {
 		List<Products> list = new ArrayList<>();
 
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
-		DBconnect ob=new DBconnect();
+		DBconnect ob = new DBconnect();
 
 		try {
-			System.out.println("inside getAllProducts");
-			
+
 			myStmt = ob.con.prepareStatement("select * from Products");
-		
-			
+
 			myRs = myStmt.executeQuery();
-			
+
 			while (myRs.next()) {
-				
+
 				Products tempProducts = convertRowToProduct1(myRs);
 				list.add(tempProducts);
-			}System.out.println("Returning");
+			}
 			return list;
-		}
-		finally {
+		} finally {
 			ob.con.close();
 		}
 	}
-	
-private Products convertRowToProduct(ResultSet r) throws SQLException {
-		
-		
+
+	private Products convertRowToProduct(ResultSet r) throws SQLException {
+
 		String item = r.getString("Item");
 		Double price = r.getDouble("Price");
 
-		total+=price;
-		System.out.println("Item="+item+" Price="+price);
-		
-		Products tempComplaint = new Products(item,price);
-		
+		total += price;
+
+		Products tempComplaint = new Products(item, price);
+
 		return tempComplaint;
 	}
 
+	public Products getProductObjects(String search) throws Exception {
 
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		DBconnect ob = new DBconnect();
+		String product1;
+		Double price1;
 
-public Products getProductObjects(String search) throws Exception {
-	
+		PreparedStatement populate;
 
-	PreparedStatement myStmt = null;
-	ResultSet myRs = null;
-	DBconnect ob=new DBconnect();
-	String product1;
-	Double price1;
-	
-	PreparedStatement populate;
-	
+		try {
 
+			populate = ob.con
+					.prepareStatement("SELECT Item,Price from Products WHERE Item=?");
+			populate.setString(1, search);
+			populate.setMaxRows(1);
+			ResultSet r = populate.executeQuery();
 
-	try {
-		//search += "%";
-		System.out.println("Before haha Query");
-		//myStmt = ob.con.prepareStatement("SELECT Item,Price from Products");
-		
-		//myStmt.setString(1, search);
-		
-		//myRs = myStmt.executeQuery();
-		
-		//String item = myRs.getString("Item");
-		//Double price = myRs.getDouble("Price");
-		//System.out.println("Item="+item+" Price="+price);
-		
-		populate = ob.con.prepareStatement("SELECT Item,Price from Products WHERE Item=?");
-	    populate.setString(1,search);
-	    populate.setMaxRows(1); 
-	    ResultSet r =populate.executeQuery();
-	    System.out.println("executed query");
-	  
-	   while (r.next()) {
-	    	int i=0;
-             product1= r.getString(1);
-             price1=r.getDouble(2);
-          //  getPrice.put(product,price);
-         	tempProducts = convertRowToProduct(r);
-            System.out.print(product1+" LOL :");
-            System.out.println(price1);
-            
-	    }return tempProducts;
-            
-	    
-	  
-		
-		
-	}catch(Exception e){};
-	return tempProducts;
+			while (r.next()) {
+				int i = 0;
+				product1 = r.getString(1);
+				price1 = r.getDouble(2);
+				// getPrice.put(product,price);
+				tempProducts = convertRowToProduct(r);
 
+			}
+			return tempProducts;
 
-}
-private Products convertRowToProduct1(ResultSet r) throws SQLException {
-	
-	
-	String item = r.getString("Item");
-	Double price = r.getDouble("Price");
-	int dno=r.getInt("D_num");
-	String id=r.getString("Product_Id");
-	
+		} catch (Exception e) {
+		}
+		;
+		return tempProducts;
 
-	System.out.println("Item="+item+" Price="+price+" id="+id+"dno="+dno);
-	Products tempComplaint = new Products(item,price,id,dno);
-	
-	return tempComplaint;
-}
+	}
+
+	private Products convertRowToProduct1(ResultSet r) throws SQLException {
+
+		String item = r.getString("Item");
+		Double price = r.getDouble("Price");
+		int dno = r.getInt("D_num");
+		String id = r.getString("Product_Id");
+
+		Products tempComplaint = new Products(item, price, id, dno);
+
+		return tempComplaint;
+	}
 }
