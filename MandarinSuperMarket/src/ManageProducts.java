@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import java.awt.Font;
 
 
 public class ManageProducts extends JDialog {
@@ -53,7 +54,7 @@ public class ManageProducts extends JDialog {
 		 d=new JDialog();	d.setVisible(true);
 		 d.setTitle("Manage Products");
 		d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		d.setBounds(100, 100, 713, 316);
+		d.setBounds(100, 100, 713, 518);
 		d.getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,12 +66,14 @@ public class ManageProducts extends JDialog {
 			{
 				{
 					JButton button = new JButton("Update");
+					button.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 					button.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
 							new UpdateProduct();
 						}
 					});
 					JButton btnReferesh = new JButton("Referesh");
+					btnReferesh.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 					btnReferesh.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
 						d.setVisible(false);
@@ -84,6 +87,7 @@ public class ManageProducts extends JDialog {
 				}
 				{
 					JButton btnUpdateHistory = new JButton("Update History");
+					btnUpdateHistory.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 					btnUpdateHistory.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							TriggerInterface pr=new TriggerInterface();
@@ -95,6 +99,7 @@ public class ManageProducts extends JDialog {
 			}
 			{
 				JButton okButton = new JButton("New Product Entry");
+				okButton.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 				okButton.setActionCommand("entry");
 				buttonPane.add(okButton);
 				okButton.addActionListener(new ActionListener() {
@@ -109,6 +114,7 @@ public class ManageProducts extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Remove Product");
+				cancelButton.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 				cancelButton.setActionCommand("remove");
 				cancelButton.addActionListener(new ActionListener() {
 					

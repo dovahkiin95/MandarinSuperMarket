@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import java.awt.Font;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import java.awt.Dimension;
 
 
 public class TriggerDisplay extends JDialog {
@@ -46,8 +50,8 @@ public TriggerDisplay(TriggerInterface pro) {
 
 	public void Display() {
 		JDialog d=new JDialog();
-		 
-		d.setBounds(100, 100, 450, 300);
+		d.setTitle("Update History"); 
+		d.setBounds(100, 100, 1247, 365);
 		d.getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,14 +62,10 @@ public TriggerDisplay(TriggerInterface pro) {
 			d.getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
 			}
 			
 			{	
@@ -76,9 +76,21 @@ public TriggerDisplay(TriggerInterface pro) {
 				ProductList1=pi.getAllProducts();
 				System.out.println("got all trigger products");
 				// create the model and update the "table"  */
-				TriggerTableModel model = new TriggerTableModel(ProductList1);							
+				TriggerTableModel model = new TriggerTableModel(ProductList1);		
+				table.setPreferredScrollableViewportSize(new Dimension(1200, 400));
+				table.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+				
 				table.setModel(model);
-				System.out.println("CReated table model lol");
+				int columnCount = table.getColumnCount();
+				int width = 200,i;
+				for(i=0;i<columnCount;i++){
+					if(i==1 || i==2)
+					   table.getColumnModel().getColumn(i).setPreferredWidth(500);
+					else
+						table.getColumnModel().getColumn(i).setPreferredWidth(100);
+				}
+			 
+			
 				/*
 				for (Complaint temp : Complaints) {
 					System.out.println(temp);

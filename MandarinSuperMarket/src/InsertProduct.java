@@ -16,6 +16,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 
 public class InsertProduct extends JDialog {
@@ -44,6 +45,7 @@ public class InsertProduct extends JDialog {
 	 */
 	public InsertProduct() {
 		JDialog d=new JDialog();
+		d.setResizable(false);
 		d.setTitle("New Product Entry");
 		d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
@@ -65,12 +67,16 @@ public class InsertProduct extends JDialog {
 		textField_3.setColumns(10);
 		
 		JLabel id = new JLabel("Product ID");
+		id.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		
 		JLabel name = new JLabel("Product Name");
+		name.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		
 		JLabel price = new JLabel("Price");
+		price.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		
 		JLabel dnum = new JLabel("Department");
+		dnum.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -116,12 +122,6 @@ public class InsertProduct extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			d.getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
 				JButton cancelButton = new JButton("Insert");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -151,7 +151,8 @@ public class InsertProduct extends JDialog {
 							ManageProducts.d.repaint();
 							
 						}catch (Exception exc) {
-							JOptionPane.showMessageDialog(InsertProduct.this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE); 
+							JOptionPane.showMessageDialog(InsertProduct.this, "Error: INVALID DEPARTMENT " , "Error", JOptionPane.ERROR_MESSAGE);
+							//JOptionPane.showMessageDialog(InsertProduct.this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE);
 						}	
 					}
 				});

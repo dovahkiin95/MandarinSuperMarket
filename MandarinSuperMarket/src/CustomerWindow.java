@@ -7,6 +7,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class CustomerWindow {
@@ -17,6 +19,9 @@ public class CustomerWindow {
 	public static  JScrollPane pane;
 	public static JPanel Mainpanel;
 	public static JTextField textField;
+	private JSeparator separator;
+	public static JTextField textField_1;
+	public static JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -36,78 +41,138 @@ public class CustomerWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame("Customer Purcahase");
+		frame = new JFrame("Customer Purchase");
+		frame.setResizable(false);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 659, 368);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 712, 437);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		Mainpanel = new JPanel(new BorderLayout());
-		Mainpanel.setBackground(Color.blue);
+		Mainpanel.setBackground(Color.LIGHT_GRAY);
 		
 		
 		JComboBox comboBox = new JComboBox(new CheckBoxPopulate().getCategory());
+		comboBox.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		
 		comboBox.addActionListener(new ComboBoxListener());
 		
 		
 		JLabel lblSelectCategory = new JLabel("Select Category");
+		lblSelectCategory.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		
-		JLabel label = new JLabel("New label");
+		JLabel lblProducts = new JLabel("Products");
+		lblProducts.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		
 		JLabel lblTotal = new JLabel("Total");
+		lblTotal.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		
 		textField = new JTextField();
 		textField.setText("0");
 		textField.setColumns(10);
+		
+		separator = new JSeparator();
+		
+		JButton btnPay = new JButton("PAY");
+		btnPay.setForeground(Color.GREEN);
+		btnPay.setFont(new Font("Ubuntu Light", Font.BOLD, 14));
+		btnPay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ProductPriceTable1();
+			}
+		});
+		
+		JLabel lblRs = new JLabel("RS");
+		lblRs.setFont(new Font("Ubuntu Medium", Font.ITALIC, 14));
+		
+		JLabel lblSelectedItem = new JLabel("Selected Item :");
+		
+		textField_1 = new JTextField();
+		
+		textField_1.setColumns(10);
+		textField_1.setEditable(false);
+		
+		JLabel lblPrice = new JLabel("Price :");
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setEditable(false);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(29)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblSelectCategory, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))))
+					.addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+					.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGap(30)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblTotal, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(29)
-									.addComponent(lblSelectCategory))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(37)
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)))
-							.addGap(27)
-							.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(96)
-									.addComponent(lblTotal, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(72)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+									.addComponent(lblRs)
+									.addGap(12)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(243)
-							.addComponent(label)))
-					.addContainerGap(88, Short.MAX_VALUE))
+							.addGap(77)
+							.addComponent(btnPay, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(114, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(263)
+					.addComponent(lblProducts)
+					.addContainerGap(383, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(84)
+					.addComponent(lblSelectedItem)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(70)
+					.addComponent(lblPrice)
+					.addContainerGap(276, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGap(30)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(78)
 									.addComponent(lblSelectCategory)
-									.addGap(18)
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)))
-							.addGap(18)
-							.addComponent(label))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+									.addGap(103)
+									.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(18))
+								.addComponent(Mainpanel, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(62)
+							.addGap(72)
 							.addComponent(lblTotal, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-							.addGap(26)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(63, Short.MAX_VALUE))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblRs))
+							.addGap(30)
+							.addComponent(btnPay, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblProducts)
+					.addGap(52)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblSelectedItem)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblPrice)
+						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(48, Short.MAX_VALUE))
 		);
 		// scroll button starts
 		buttonPanel = new JPanel();

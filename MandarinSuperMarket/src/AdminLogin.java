@@ -37,11 +37,13 @@ public class AdminLogin {
 	private void initialize() {
 
 		frame = new JFrame("Administrator Login");
+		frame.setResizable(false);
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JLabel label = new JLabel("Enter Admin Password : ");
+		label.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		
 		pwdPassword = new JPasswordField();
 		pwdPassword.setText("");
@@ -52,10 +54,12 @@ public class AdminLogin {
 		
 		
 		lblInvalidPassword = new JLabel("INVALID PASSWORD");
+		lblInvalidPassword.setFont(new Font("Loma", Font.BOLD, 14));
 		lblInvalidPassword.setForeground(Color.RED);
 		lblInvalidPassword.setVisible(false);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		btnLogin.addActionListener(new ActionListener() {
 			
 			@Override
@@ -76,17 +80,15 @@ public class AdminLogin {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblInvalidPassword)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
 							.addComponent(label)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(pwdPassword, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-							.addGap(33)
-							.addComponent(btnLogin))
-						    .addGroup(groupLayout.createSequentialGroup()
-							.addGap(134)
-							.addComponent(lblInvalidPassword)))
+							.addComponent(pwdPassword, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)))
+					.addGap(33)
+					.addComponent(btnLogin)
 					.addContainerGap(53, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -97,9 +99,9 @@ public class AdminLogin {
 						.addComponent(label)
 						.addComponent(pwdPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnLogin))
-					.addPreferredGap(ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+					.addGap(57)
 					.addComponent(lblInvalidPassword)
-					.addGap(59))
+					.addContainerGap(91, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

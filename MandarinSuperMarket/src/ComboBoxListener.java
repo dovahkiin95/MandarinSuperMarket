@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -36,6 +37,7 @@ public class ComboBoxListener implements ActionListener {
 			    	int i=0;
 	                String product= r.getString(1);
 	                double price=r.getDouble(2);
+	                final double p1=price;
 	              //  getPrice.put(product,price);
 	                System.out.print(product+":");
 	                System.out.println(price);
@@ -53,7 +55,13 @@ public class ComboBoxListener implements ActionListener {
 							// TODO Auto-generated method stub
 							System.out.println("Getting table for "+((JButton) event.getSource()).getText());
 							if(count>0) ProductPriceTable1.d.setVisible(false);
+							String temp=((AbstractButton) event.getSource()).getText();
+							CustomerWindow.textField_1.setText(temp);
+							CustomerWindow.textField_2.setText(String.valueOf(p1));
+							CustomerWindow.frame.revalidate();
+							CustomerWindow.frame.repaint();
 						new ProductPriceTable1(((JButton) event.getSource()).getText(),pi);	
+						
 						count++;
 						
 						}

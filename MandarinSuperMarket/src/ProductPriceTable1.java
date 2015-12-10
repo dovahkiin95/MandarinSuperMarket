@@ -95,7 +95,7 @@ public ProductPriceTable1(String x,ProductInterface pro) {
 		scrollPane.setViewportView(table);
 		}
 		}
-		d.setVisible(true);
+		d.setVisible(false);
 		CustomerWindow.textField.setText(Double.toString(ProductInterface.total));
 		CustomerWindow.frame.revalidate();
 		//(ProductInterface.total);
@@ -106,6 +106,61 @@ public ProductPriceTable1(String x,ProductInterface pro) {
 	 * Create the dialog.
 	 */
 	public ProductPriceTable1() {
+		d=new JDialog();
+		
+		d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		
+	
+		
+		
+		System.out.println("Inside ppt constuctr 1");
+		d.setBounds(100, 100, 450, 300);
+		d.getContentPane().setLayout(new BorderLayout());
+		contentPanel.setLayout(new FlowLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		d.getContentPane().add(contentPanel, BorderLayout.CENTER);
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			d.getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			{
+				try {
+				
+				//String CompID = CompIDtextField.getText();
+				//long CompID= Long.parseLong(tCompID);
+				//long tCompID= Long.parseLong(CompID);
+				
+				
+				
+	
+				
+				// create the model and update the "table"  */
+				TableModel model = new TableModel(ProductList);							
+				table.setModel(model);
+				System.out.println("CReated table model lol");
+				/*
+				for (Complaint temp : Complaints) {
+					System.out.println(temp);
+				}*/
+				
+			} catch (Exception exc) {
+				JOptionPane.showMessageDialog(ProductPriceTable1.this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE); 
+			}	
+			
+		}
+		{
+		JScrollPane scrollPane = new JScrollPane();
+		contentPanel.add(scrollPane, BorderLayout.CENTER);
+		
+		
+		scrollPane.setViewportView(table);
+		}
+		}
+		d.setVisible(true);
+		CustomerWindow.textField.setText(Double.toString(ProductInterface.total));
+		CustomerWindow.frame.revalidate();
+		//(ProductInterface.total);
+		
 		
 		}
 	}

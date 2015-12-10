@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.PreparedStatement;
+import java.awt.Font;
 
 
 public class DeleteProduct extends JDialog {
@@ -39,6 +40,7 @@ public class DeleteProduct extends JDialog {
 	 */
 	public DeleteProduct() {
 		JDialog d=new JDialog();
+		d.setResizable(false);
 		d.setTitle("Delete Product");
 		d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		d.setVisible(true);
@@ -54,8 +56,13 @@ public class DeleteProduct extends JDialog {
 		textField_1.setColumns(10);
 		
 		JLabel lblProductId = new JLabel("Product ID");
+		lblProductId.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		
 		JLabel lblProductName = new JLabel("Product Name");
+		lblProductName.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
+		
+		JLabel lblOr = new JLabel("OR");
+		lblOr.setFont(new Font("Ubuntu Medium", Font.PLAIN, 12));
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
@@ -67,7 +74,9 @@ public class DeleteProduct extends JDialog {
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGap(64)
 							.addComponent(lblProductId)))
-					.addPreferredGap(ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+					.addGap(33)
+					.addComponent(lblOr)
+					.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblProductName)
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -76,10 +85,12 @@ public class DeleteProduct extends JDialog {
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addContainerGap(95, Short.MAX_VALUE)
+					.addContainerGap(121, Short.MAX_VALUE)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblOr)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblProductId)
@@ -93,6 +104,7 @@ public class DeleteProduct extends JDialog {
 			d.getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton cancelButton = new JButton("Delete");
+				cancelButton.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						String id,name;

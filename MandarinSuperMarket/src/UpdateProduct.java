@@ -17,6 +17,7 @@ import com.mysql.jdbc.PreparedStatement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.*;
+import java.awt.Font;
 
 public class UpdateProduct extends JDialog {
 
@@ -42,7 +43,8 @@ public class UpdateProduct extends JDialog {
 	 */
 	public UpdateProduct() {
 		final DBconnect ob=new DBconnect();
-		JDialog d=new JDialog();	System.out.println("updatel");
+		JDialog d=new JDialog();
+		d.setResizable(false);System.out.println("updatel");
 		d.setTitle("Product Update");
 		d.setVisible(true);
 		d.setBounds(100, 100, 450, 300);
@@ -57,8 +59,10 @@ public class UpdateProduct extends JDialog {
 		textField_1.setColumns(10);
 		
 		JLabel lblItem = new JLabel("Item");
+		lblItem.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		
 		JLabel lblNewPrice = new JLabel("New Price");
+		lblNewPrice.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -96,6 +100,7 @@ public class UpdateProduct extends JDialog {
 			d.getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("UPDATE");
+				okButton.setFont(new Font("Ubuntu Medium", Font.BOLD, 14));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						PreparedStatement ps;
